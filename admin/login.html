@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" data-base="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Login · Happy Home</title>
+  <meta name="description" content="Happy Home admin sign-in.">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body class="login-page">
+  <div class="login-bg" aria-hidden="true">
+    <img src="../assets/img/hero-1.jpg" alt="" class="login-bg__img" onerror="this.remove()">
+    <span class="login-bg__orb login-bg__orb--a"></span>
+    <span class="login-bg__orb login-bg__orb--b"></span>
+  </div>
+
+  <main class="login-card glass fade-up">
+    <a href="../index.html" class="login-brand">
+      <img src="../assets/img/logo.svg" alt="" width="40" height="40">
+      <span><strong>Happy Home</strong><small>Admin dashboard</small></span>
+    </a>
+
+    <h1 class="h2">Welcome back</h1>
+    <p class="login-sub">Sign in to manage houses and bookings.</p>
+
+    <form id="loginForm" class="login-form" novalidate>
+      <div class="field">
+        <label for="email">Email</label>
+        <input class="input" id="email" name="email" type="email" autocomplete="username" placeholder="you@company.com" required>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="pw-wrap">
+          <input class="input" id="password" name="password" type="password" autocomplete="current-password" placeholder="Any password" required>
+          <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show password">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+      </div>
+      <button class="btn btn--primary btn--lg btn--block" type="submit">
+        Sign in
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </form>
+
+    <div class="login-demo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg>
+      <span>Demo: any email and any password will sign you in.</span>
+    </div>
+
+    <a href="../index.html" class="login-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+      Back to website
+    </a>
+  </main>
+
+  <script src="../js/ui.js"></script>
+  <script src="../js/seed.js"></script>
+  <script src="../js/store.js"></script>
+  <script>
+    (function () {
+      const U = window.UI;
+      const S = window.Store;
+      if (S.getSession()) {
+        location.replace("dashboard.html");
+        return;
+      }
+      const form = U.qs("#loginForm");
+      const email = U.qs("#email");
+      const pw = U.qs("#password");
+      U.qs("#pwToggle").addEventListener("click", () => {
+        pw.type = pw.type === "password" ? "text" : "password";
+      });
+      [email, pw].forEach((i) => i.addEventListener("input", () => U.clearInvalid(i)));
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const res = S.login(email.value, pw.value);
+        if (!res.ok) {
+          U.setInvalid(res.field === "email" ? email : pw, res.reason);
+          return;
+        }
+        const btn = U.qs("button[type=submit]", form);
+        btn.classList.add("is-loading");
+        U.toast(`Welcome, ${res.session.name}!`, "success");
+        setTimeout(() => location.replace("dashboard.html"), 450);
+      });
+    })();
+  </script>
+</body>
+</html>

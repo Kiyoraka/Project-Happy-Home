@@ -1,0 +1,195 @@
+/* ==========================================================================
+   Happy Home - login.css
+   Admin sign-in page: twilight photo with slow zoom, floating coral orbs and
+   a frosted-glass card. Loads after base.css and components.css.
+   ========================================================================== */
+
+/* ------------------------------------------------------------------ Login */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: var(--navy-900);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-bg {
+  position: fixed;
+  inset: 0;
+}
+
+.login-bg__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.4;
+  animation: slow-zoom 24s var(--ease) infinite alternate;
+}
+
+.login-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(11, 21, 48, 0.55), rgba(11, 21, 48, 0.92));
+}
+
+.login-bg__orb {
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  animation: float 12s var(--ease) infinite alternate;
+}
+
+.login-bg__orb--a {
+  width: 340px;
+  height: 340px;
+  background: var(--coral-500);
+  top: -80px;
+  right: -60px;
+}
+
+.login-bg__orb--b {
+  width: 280px;
+  height: 280px;
+  background: var(--navy-600);
+  bottom: -60px;
+  left: -40px;
+  animation-delay: -5s;
+}
+
+.login-card {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 440px);
+  padding: 36px 32px;
+  background: rgba(17, 30, 66, 0.55);
+  box-shadow: var(--shadow-lg);
+}
+
+.login-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.login-brand strong {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.login-brand small {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--coral-400);
+  font-weight: 600;
+}
+
+.login-sub {
+  margin: 8px 0 26px;
+  color: var(--on-dark-mute);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.login-form .field > label {
+  color: var(--on-dark-mute);
+}
+
+.login-form .input {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.pw-wrap {
+  position: relative;
+}
+
+.pw-wrap .input {
+  padding-right: 48px;
+}
+
+.pw-toggle {
+  position: absolute;
+  right: 6px;
+  top: 4px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-mute);
+  border-radius: 50%;
+}
+
+.pw-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+.login-demo {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 12px 14px;
+  border-radius: var(--r-md);
+  background: rgba(255, 107, 91, 0.14);
+  border: 1px solid rgba(255, 107, 91, 0.3);
+  font-size: 0.84rem;
+  color: var(--peach-100);
+}
+
+.login-demo svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  margin-top: 2px;
+  color: var(--coral-400);
+}
+
+.login-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 22px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--on-dark-mute);
+  transition: color var(--t-fast) var(--ease);
+}
+
+.login-back:hover {
+  color: var(--white);
+}
+
+.login-back svg {
+  width: 16px;
+  height: 16px;
+}
+
+@keyframes slow-zoom {
+  to {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes float {
+  to {
+    transform: translate(30px, 40px) scale(1.1);
+  }
+}
+
+@media (max-width: 767px) {
+  .login-card {
+    padding: 28px 22px;
+  }
+}
