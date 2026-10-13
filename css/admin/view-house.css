@@ -1,0 +1,555 @@
+/* ==========================================================================
+   Happy Home - admin/view-house.css
+   House view: card grid (.view[data-view="house"]) and the wide drawer
+   editor (#drawer .house-editor) - photo thumbs, room builder, item rows
+   and amenity chips. Breakpoints: 1023px (tablet), 767px (phone).
+   ========================================================================== */
+
+/* ------------------------------------------------------------------ Grid */
+.view[data-view="house"] .house-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.view[data-view="house"] .house-grid__empty {
+  grid-column: 1 / -1;
+  background: var(--white);
+  border: 1px dashed var(--line);
+  border-radius: var(--r-lg);
+}
+
+.view[data-view="house"] .hcard-wrap { min-width: 0; }
+
+.view[data-view="house"] .hcard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease);
+}
+
+.view[data-view="house"] .hcard:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+
+.view[data-view="house"] .hcard.is-hidden .hcard__media img { filter: grayscale(0.55) brightness(0.9); }
+
+.view[data-view="house"] .hcard__open {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.view[data-view="house"] .hcard__media { aspect-ratio: 16 / 10; overflow: hidden; }
+
+.view[data-view="house"] .hcard__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 900ms var(--ease), opacity var(--t-slow) var(--ease), filter var(--t-med) var(--ease);
+}
+
+.view[data-view="house"] .hcard:hover .hcard__media img { transform: scale(1.06); }
+
+.view[data-view="house"] .hcard__media--empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--grad-navy);
+  color: var(--on-dark-mute);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.view[data-view="house"] .hcard__media--empty svg {
+  width: 34px;
+  height: 34px;
+  color: var(--coral-400);
+}
+
+.view[data-view="house"] .hcard__flag,
+.view[data-view="house"] .hcard__count { position: absolute; top: 12px; }
+
+.view[data-view="house"] .hcard__flag { left: 12px; }
+
+.view[data-view="house"] .hcard__count { right: 12px; }
+
+.view[data-view="house"] .hcard__body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  padding: 16px 18px 14px;
+}
+
+.view[data-view="house"] .hcard__name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.view[data-view="house"] .hcard__meta { font-size: 0.84rem; color: var(--ink-mute); }
+
+.view[data-view="house"] .hcard__price strong {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--coral-600);
+}
+
+.view[data-view="house"] .hcard__price span { font-size: 0.82rem; color: var(--ink-mute); }
+
+.view[data-view="house"] .hcard__specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 2px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.view[data-view="house"] .hcard__specs li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.view[data-view="house"] .hcard__specs svg {
+  width: 16px;
+  height: 16px;
+  color: var(--coral-500);
+}
+
+.view[data-view="house"] .hcard__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin-top: auto;
+  padding-top: 10px;
+  font-size: 0.8rem;
+}
+
+.view[data-view="house"] .hcard__avail {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 700;
+}
+
+.view[data-view="house"] .hcard__avail::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.view[data-view="house"] .hcard__avail.is-free { color: var(--success); }
+
+.view[data-view="house"] .hcard__avail.is-busy { color: #b4750f; }
+
+.view[data-view="house"] .hcard__rooms { color: var(--ink-mute); font-weight: 600; }
+
+.view[data-view="house"] .hcard__actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+}
+
+.view[data-view="house"] .hcard__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  border: 0;
+  background: none;
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+
+.view[data-view="house"] .hcard__btn + .hcard__btn { border-left: 1px solid var(--line); }
+
+.view[data-view="house"] .hcard__btn svg { width: 16px; height: 16px; }
+
+.view[data-view="house"] .hcard__btn:hover { background: var(--cream-50); color: var(--coral-600); }
+
+.view[data-view="house"] .hcard__btn--danger:hover { background: var(--danger-bg); color: var(--danger); }
+
+/* ---------------------------------------------------------------- Editor */
+#drawer .house-editor .he-sec > h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#drawer .house-editor .he-step {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--navy-800);
+  color: var(--white);
+  font-size: 0.72rem;
+  letter-spacing: 0;
+}
+
+#drawer .house-editor .he-count {
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+#drawer .house-editor .he-empty {
+  padding: 14px 16px;
+  border-radius: var(--r-md);
+  background: var(--cream-50);
+  color: var(--ink-mute);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+#drawer .house-editor .he-empty--sm {
+  padding: 8px 12px;
+  background: transparent;
+  text-align: left;
+}
+
+/* Small round icon buttons */
+#drawer .house-editor .he-ibtn {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all var(--t-fast) var(--ease);
+}
+
+#drawer .house-editor .he-ibtn svg { width: 16px; height: 16px; }
+
+#drawer .house-editor .he-ibtn.is-flip svg { transform: rotate(180deg); }
+
+#drawer .house-editor .he-ibtn:hover:not(:disabled) { border-color: var(--coral-400); color: var(--coral-600); }
+
+#drawer .house-editor .he-ibtn--danger:hover:not(:disabled) {
+  border-color: var(--danger);
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+#drawer .house-editor .he-ibtn:disabled { opacity: 0.35; cursor: default; }
+
+/* Pricing summary */
+#drawer .house-editor .he-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 16px;
+  padding: 14px 18px;
+  border-radius: var(--r-md);
+  background: var(--grad-glow), var(--grad-navy);
+  color: var(--on-dark);
+}
+
+#drawer .house-editor .he-summary strong { color: var(--coral-400); font-size: 1.15rem; }
+
+#drawer .house-editor .he-summary small { color: var(--on-dark-mute); font-size: 0.78rem; }
+
+/* Photos */
+#drawer .house-editor .he-drop { margin-bottom: 14px; }
+
+#drawer .house-editor .he-drop.is-busy { pointer-events: none; opacity: 0.6; }
+
+#drawer .house-editor .he-photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+}
+
+#drawer .house-editor .he-photo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  animation: fade-up 360ms var(--ease) both;
+}
+
+#drawer .house-editor .he-photo__img {
+  display: block;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+#drawer .house-editor .he-photo__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms var(--ease), opacity var(--t-slow) var(--ease);
+}
+
+#drawer .house-editor .he-photo__img:hover img { transform: scale(1.05); }
+
+#drawer .house-editor .he-photo__cover {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  pointer-events: none;
+}
+
+#drawer .house-editor .he-photo__tools {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+#drawer .house-editor .he-photo__tools .he-ibtn { width: 30px; height: 30px; }
+
+#drawer .house-editor .he-photo__cap {
+  min-height: 38px;
+  padding: 6px 10px;
+  font-size: 0.82rem;
+}
+
+/* Room builder */
+#drawer .house-editor .he-rooms {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+#drawer .house-editor .he-room {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--cream-50);
+}
+
+#drawer .house-editor .he-room.is-new,
+#drawer .house-editor .he-item.is-new { animation: fade-up 420ms var(--ease) both; }
+
+#drawer .house-editor .he-room__head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 150px auto;
+  align-items: center;
+  gap: 10px;
+}
+
+#drawer .house-editor .he-room__num {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--grad-coral);
+  color: var(--white);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+#drawer .house-editor .he-room__name .input { font-weight: 700; }
+
+#drawer .house-editor .he-room__tools { display: flex; gap: 6px; }
+
+#drawer .house-editor .he-room .input,
+#drawer .house-editor .he-room .select { min-height: 40px; }
+
+#drawer .house-editor .he-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 40px;
+}
+
+#drawer .house-editor .he-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 80px auto;
+  align-items: center;
+  gap: 8px;
+}
+
+#drawer .house-editor .he-room__add { align-self: flex-start; margin-left: 40px; }
+
+#drawer .house-editor .he-room__add svg,
+#drawer .house-editor .he-rooms__add svg { width: 15px; height: 15px; }
+
+#drawer .house-editor .he-rooms__add {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+/* Amenities */
+#drawer .house-editor .he-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-height: 50px;
+  padding: 8px 10px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--white);
+  cursor: text;
+  transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+}
+
+#drawer .house-editor .he-tags:focus-within {
+  border-color: var(--coral-500);
+  box-shadow: 0 0 0 4px rgba(255, 107, 91, 0.16);
+}
+
+#drawer .house-editor .he-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px 4px 12px;
+  border-radius: var(--r-pill);
+  background: var(--peach-100);
+  color: var(--coral-600);
+  font-size: 0.82rem;
+  font-weight: 700;
+  animation: zoom-in 220ms var(--ease) both;
+}
+
+#drawer .house-editor .he-tag button {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+#drawer .house-editor .he-tag button:hover { background: var(--coral-500); color: var(--white); }
+
+#drawer .house-editor .he-tag svg { width: 12px; height: 12px; }
+
+#drawer .house-editor .he-tags__input {
+  flex: 1 1 140px;
+  min-width: 120px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+#drawer .house-editor .he-suggest {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+#drawer .house-editor .he-suggest .hint { margin-right: 4px; }
+
+#drawer .house-editor .he-suggest__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border: 1.5px dashed var(--line);
+  border-radius: var(--r-pill);
+  background: var(--white);
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--t-fast) var(--ease);
+}
+
+#drawer .house-editor .he-suggest__chip svg { width: 12px; height: 12px; }
+
+#drawer .house-editor .he-suggest__chip:hover {
+  border-style: solid;
+  border-color: var(--coral-400);
+  color: var(--coral-600);
+}
+
+#drawer .house-editor .he-vis-hint { margin-top: 8px; }
+
+/* ------------------------------------------------------------ Responsive */
+@media (max-width: 1023px) {
+  .view[data-view="house"] .house-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+}
+
+@media (max-width: 767px) {
+  .view[data-view="house"] .toolbar .btn--primary { width: 100%; justify-content: center; }
+
+  .view[data-view="house"] .house-grid { grid-template-columns: 1fr; gap: 16px; }
+
+  #drawer .house-editor .form-grid { grid-template-columns: 1fr; }
+
+  #drawer .house-editor .form-grid .span-2 { grid-column: auto; }
+
+  #drawer .house-editor .he-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+
+  #drawer .house-editor .he-room__head { grid-template-columns: auto minmax(0, 1fr); }
+
+  #drawer .house-editor .he-room__type { grid-column: 1 / -1; }
+
+  #drawer .house-editor .he-room__tools { grid-column: 1 / -1; justify-content: flex-end; }
+
+  #drawer .house-editor .he-items { padding-left: 0; }
+
+  #drawer .house-editor .he-room__add { margin-left: 0; }
+
+  #drawer .house-editor .he-item { grid-template-columns: minmax(0, 1fr) 64px auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .view[data-view="house"] .hcard,
+  .view[data-view="house"] .hcard__media img { transition: none; }
+
+  .view[data-view="house"] .hcard:hover,
+  .view[data-view="house"] .hcard:hover .hcard__media img { transform: none; }
+
+  #drawer .house-editor .he-photo,
+  #drawer .house-editor .he-room.is-new,
+  #drawer .house-editor .he-item.is-new,
+  #drawer .house-editor .he-tag { animation: none; }
+}
