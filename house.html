@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>House · Happy Home</title>
+  <meta name="description" content="See every room of this Happy Home house, what is inside, the monthly rent and when you can move in - then book it online.">
+  <meta name="theme-color" content="#0b1530">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/house.css">
+</head>
+<body class="landing house-page">
+
+  <header class="nav nav--solid" id="nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="brand">
+        <img src="assets/img/logo.svg" alt="" width="42" height="42">
+        <span><strong data-setting="company.name">Happy Home</strong><small data-setting="company.tagline">Homes that make you happy</small></span>
+      </a>
+      <nav class="nav__links" aria-label="Main">
+        <a href="index.html#houses" class="is-active">Houses</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#track">Track Booking</a>
+      </nav>
+      <a href="admin/login.html" class="btn btn--glass btn--sm nav__login">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        <span>Login</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="houseRoot" class="house-root">
+    <!-- Filled by js/house.js -->
+    <div class="container house-loading">
+      <div class="skeleton house-loading__media"></div>
+      <div class="skeleton house-loading__line"></div>
+      <div class="skeleton house-loading__line house-loading__line--short"></div>
+    </div>
+  </main>
+
+  <!-- ============================================================ Booking modal -->
+  <div class="modal-backdrop" id="bookModal">
+    <div class="modal modal--wide book-modal" role="dialog" aria-modal="true" aria-labelledby="bookTitle">
+      <div class="modal__head">
+        <div>
+          <p class="eyebrow">Book this house</p>
+          <h2 class="h3" id="bookTitle">House</h2>
+        </div>
+        <button class="close-x" data-close aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <div class="modal__body" id="bookBody"></div>
+      <div class="modal__foot" id="bookFoot"></div>
+    </div>
+  </div>
+
+  <footer class="footer" id="contact">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand">
+          <img src="assets/img/logo.svg" alt="" width="42" height="42">
+          <span><strong data-setting="company.name">Happy Home</strong><small data-setting="company.tagline">Homes that make you happy</small></span>
+        </a>
+        <p>We provide comfortable, fully furnished homes for monthly rent across the Klang Valley.</p>
+      </div>
+      <div>
+        <h3>Quick links</h3>
+        <ul>
+          <li><a href="index.html#houses">Houses</a></li>
+          <li><a href="index.html#gallery">Gallery</a></li>
+          <li><a href="index.html#track">Track Booking</a></li>
+          <li><a href="admin/login.html">Admin login</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Get in touch</h3>
+        <ul class="footer__contact">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg><span data-setting="company.phone"></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg><span data-setting="company.email"></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span data-setting="company.address"></span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Follow us</h3>
+        <div class="footer__social">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8Z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#" class="js-wa" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.4Z"/><path d="M9 10c.5 2 2 3.5 4 4l1.2-1.2 2 .8-.4 2c-3.5.3-7.3-3.5-7-7l2-.4.8 2Z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">© <span id="year"></span> <span data-setting="company.name">Happy Home</span> Sdn. Bhd. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <nav class="site-bottom-nav" aria-label="Quick">
+    <a href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="index.html#houses" class="is-active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      <span>Houses</span>
+    </a>
+    <a href="index.html#track">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 11h6M9 15h4"/></svg>
+      <span>Track</span>
+    </a>
+    <a href="#contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg>
+      <span>Contact</span>
+    </a>
+  </nav>
+
+  <script src="js/ui.js"></script>
+  <script src="js/seed.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/house.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>
