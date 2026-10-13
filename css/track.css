@@ -1,0 +1,318 @@
+/* ==========================================================================
+   Happy Home - track.css
+   "Track your booking" panel and result cards on the landing page.
+   ========================================================================== */
+
+.track-panel {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 1.05fr);
+  align-items: center;
+  gap: 28px;
+  padding: 30px 34px;
+  border-radius: var(--r-xl);
+  background: var(--peach-100);
+  border: 2px solid var(--peach-200);
+  box-shadow: var(--shadow-md);
+}
+
+.track-panel__intro {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.track-panel__icon {
+  width: 76px;
+  height: 76px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--coral-400);
+  color: var(--coral-500);
+}
+
+.track-panel__icon svg {
+  width: 34px;
+  height: 34px;
+}
+
+.track-panel .h3 {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+.track-form {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.track-form__input {
+  position: relative;
+  flex: 1;
+}
+
+.track-form__input > svg {
+  position: absolute;
+  left: 16px;
+  top: 15px;
+  width: 18px;
+  height: 18px;
+  color: var(--ink-mute);
+}
+
+.track-form .input {
+  min-height: 50px;
+  padding-left: 44px;
+  border-radius: var(--r-pill);
+}
+
+.track-form .btn {
+  min-height: 50px;
+}
+
+.track-form .error-text {
+  display: block;
+  margin: 6px 0 0 18px;
+}
+
+/* Results */
+.track-results:empty {
+  display: none;
+}
+
+.track-results {
+  margin-top: 28px;
+}
+
+.track-summary {
+  margin-bottom: 16px;
+  color: var(--ink-soft);
+}
+
+.track-list {
+  display: grid;
+  gap: 18px;
+}
+
+.tcard {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--t-med) var(--ease), transform var(--t-med) var(--ease);
+}
+
+.tcard:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.tcard__media {
+  display: block;
+  min-height: 100%;
+  overflow: hidden;
+  background: var(--cream-100);
+}
+
+.tcard__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 900ms var(--ease), opacity var(--t-slow) var(--ease);
+}
+
+.tcard:hover .tcard__media img {
+  transform: scale(1.05);
+}
+
+.tcard__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 22px 24px;
+  min-width: 0;
+}
+
+.tcard__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tcard__ref {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--coral-600);
+}
+
+.tcard__msg {
+  padding: 10px 14px;
+  border-radius: var(--r-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: var(--cream-50);
+  color: var(--ink-soft);
+}
+
+.tcard__msg--pending {
+  background: var(--warning-bg);
+  color: #8a5a0b;
+}
+
+.tcard__msg--confirmed {
+  background: var(--info-bg);
+  color: #2a4fbf;
+}
+
+.tcard__msg--active {
+  background: var(--success-bg);
+  color: #157a56;
+}
+
+.tcard__msg--rejected,
+.tcard__msg--cancelled {
+  background: var(--danger-bg);
+  color: #b3272c;
+}
+
+.tcard__facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.tcard__facts div {
+  padding: 10px 12px;
+  border-radius: var(--r-md);
+  background: var(--cream-50);
+}
+
+.tcard__facts dt {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ink-mute);
+}
+
+.tcard__facts dt svg {
+  width: 13px;
+  height: 13px;
+  color: var(--coral-500);
+}
+
+.tcard__facts dd {
+  margin: 2px 0 0;
+  font-weight: 800;
+  font-size: 0.92rem;
+}
+
+.tcard__note {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--r-md);
+  border-left: 4px solid var(--coral-500);
+  background: var(--peach-100);
+}
+
+.tcard__note svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  color: var(--coral-600);
+}
+
+.tcard__note strong {
+  font-size: 0.85rem;
+}
+
+.tcard__note p {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.track-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 36px 20px;
+  text-align: center;
+  border-radius: var(--r-lg);
+  background: var(--white);
+  border: 2px dashed var(--peach-200);
+}
+
+.track-empty > svg {
+  width: 42px;
+  height: 42px;
+  color: var(--coral-400);
+}
+
+.track-empty .btn {
+  margin-top: 8px;
+}
+
+@media (max-width: 1023px) {
+  .track-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .tcard__facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .track-panel {
+    padding: 22px 18px;
+    gap: 18px;
+  }
+
+  .track-panel__icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .track-panel__icon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .track-panel .h3 {
+    font-size: 1.2rem;
+  }
+
+  .track-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tcard {
+    grid-template-columns: 1fr;
+  }
+
+  .tcard__media {
+    aspect-ratio: 16 / 9;
+  }
+
+  .tcard__body {
+    padding: 18px;
+  }
+
+  .stepper__step {
+    font-size: 0.66rem;
+  }
+}
