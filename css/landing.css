@@ -10,6 +10,12 @@
   background: var(--navy-900);
 }
 
+/* Anchor jumps (#houses, #track...) land below the fixed navbar. */
+.landing section[id],
+.landing footer[id] {
+  scroll-margin-top: calc(var(--nav-h) - 1px);
+}
+
 /* ------------------------------------------------------------------ Navbar */
 .nav {
   position: fixed;

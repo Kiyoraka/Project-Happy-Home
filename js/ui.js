@@ -340,6 +340,21 @@
     });
   }
 
+  /**
+   * Safety net for jumps the observer can miss (opening a page at #anchor,
+   * restored scroll on reload): reveal whatever is on screen right now.
+   */
+  function revealInView() {
+    const vh = global.innerHeight || document.documentElement.clientHeight;
+    qsa(".reveal:not(.is-visible)").forEach((n) => {
+      const r = n.getBoundingClientRect();
+      if (r.top < vh && r.bottom > 0) {
+        n.classList.add("is-visible");
+        if (revealObserver) revealObserver.unobserve(n);
+      }
+    });
+  }
+
   /* -------------------------------------------------------------- Count-up */
   /**
    * countUp(el, 4800, { prefix: "RM ", suffix: "%", duration: 900 })
@@ -566,6 +581,9 @@
     initReveal();
     initImages();
   });
+  global.addEventListener("load", () => setTimeout(revealInView, 60));
+  global.addEventListener("hashchange", () => setTimeout(revealInView, 60));
+  global.addEventListener("scroll", debounce(revealInView, 120), { passive: true });
 
   global.UI = {
     qs,
