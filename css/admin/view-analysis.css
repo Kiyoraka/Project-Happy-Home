@@ -1,0 +1,130 @@
+/* ==========================================================================
+   Happy Home - admin/view-analysis.css
+   Analysis view only: range toolbar, chart wrappers, wide rent panel and
+   the Top houses progress bars. Shared blocks live in css/admin.css.
+   ========================================================================== */
+
+.view[data-view="analysis"] .an-toolbar {
+  justify-content: space-between;
+}
+
+.view[data-view="analysis"] .an-range-note {
+  font-weight: 600;
+}
+
+/* Wide panel spans both columns of .panels */
+.view[data-view="analysis"] .an-wide {
+  grid-column: 1 / -1;
+}
+
+/* Chart wrappers - fixed height + relative so Chart.js stays responsive */
+.view[data-view="analysis"] .an-chart {
+  position: relative;
+  width: 100%;
+  height: 280px;
+}
+
+.view[data-view="analysis"] .an-chart--tall {
+  height: 320px;
+}
+
+.view[data-view="analysis"] .an-chart canvas {
+  display: block;
+  max-width: 100%;
+}
+
+.view[data-view="analysis"] .panel .empty {
+  min-height: 220px;
+}
+
+/* Top houses table */
+.view[data-view="analysis"] .an-top td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.view[data-view="analysis"] .an-rank {
+  width: 44px;
+  font-weight: 800;
+  color: var(--ink-mute);
+}
+
+.view[data-view="analysis"] .an-top tbody tr:first-child .an-rank {
+  color: var(--coral-600);
+}
+
+.view[data-view="analysis"] .an-house {
+  display: block;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.view[data-view="analysis"] .an-bar {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  height: 6px;
+  margin-top: 8px;
+  border-radius: var(--r-pill);
+  background: var(--cream-100);
+  overflow: hidden;
+}
+
+.view[data-view="analysis"] .an-bar > span {
+  display: block;
+  width: var(--w, 0%);
+  height: 100%;
+  border-radius: inherit;
+  background: var(--grad-coral);
+  transform-origin: left center;
+  animation: an-grow 900ms var(--ease) both;
+}
+
+@keyframes an-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .view[data-view="analysis"] .an-bar > span {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------- Responsive */
+@media (max-width: 1023px) {
+  .view[data-view="analysis"] .an-chart--tall {
+    height: 280px;
+  }
+}
+
+@media (max-width: 767px) {
+  .view[data-view="analysis"] .an-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .view[data-view="analysis"] .an-chart,
+  .view[data-view="analysis"] .an-chart--tall {
+    height: 220px;
+  }
+
+  .view[data-view="analysis"] .an-bar {
+    max-width: none;
+  }
+
+  .view[data-view="analysis"] .an-top th,
+  .view[data-view="analysis"] .an-top td {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .view[data-view="analysis"] .an-rank {
+    width: 28px;
+  }
+}
