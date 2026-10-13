@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" data-base="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Dashboard · Happy Home Admin</title>
+  <meta name="description" content="Happy Home admin dashboard - houses, bookings and analysis.">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/admin/view-main.css">
+  <link rel="stylesheet" href="../css/admin/view-analysis.css">
+  <link rel="stylesheet" href="../css/admin/view-house.css">
+  <link rel="stylesheet" href="../css/admin/view-booking.css">
+  <link rel="stylesheet" href="../css/admin/view-setting.css">
+</head>
+<body class="admin">
+  <div class="admin-shell">
+    <!-- Sidebar (desktop) / drawer (tablet) -->
+    <aside class="sidebar" id="sidebar">
+      <a href="#main" class="sidebar__brand">
+        <img src="../assets/img/logo.svg" alt="" width="36" height="36">
+        <span><strong>Happy Home</strong><small>Admin</small></span>
+      </a>
+      <nav class="sidebar__nav" aria-label="Admin">
+        <span class="sidebar__pill" aria-hidden="true"></span>
+        <a href="#main" data-view="main" class="sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg>
+          <span>Main</span>
+        </a>
+        <a href="#analysis" data-view="analysis" class="sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg>
+          <span>Analysis</span>
+        </a>
+        <a href="#house" data-view="house" class="sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+          <span>House</span>
+        </a>
+        <a href="#booking" data-view="booking" class="sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="17" rx="2"/><path d="M8 2v4M16 2v4M4 10h16"/><path d="m9 15 2 2 4-4"/></svg>
+          <span>Booking</span>
+          <span class="nav-badge" data-badge="pending" hidden></span>
+        </a>
+        <a href="#setting" data-view="setting" class="sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>
+          <span>Setting</span>
+        </a>
+      </nav>
+      <div class="sidebar__foot">
+        <a href="../index.html" target="_blank" rel="noopener" class="sidebar__link sidebar__link--muted">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+          <span>View website</span>
+        </a>
+        <button type="button" class="sidebar__link sidebar__link--muted" id="logoutBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+    <div class="drawer-backdrop sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- Main column -->
+    <div class="admin-main">
+      <header class="topbar">
+        <button class="topbar__menu btn--icon" id="menuBtn" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <a href="#main" class="topbar__brand">
+          <img src="../assets/img/logo.svg" alt="" width="30" height="30">
+        </a>
+        <div class="topbar__title">
+          <h1 id="viewTitle">Main</h1>
+          <p id="viewSub" class="muted small"></p>
+        </div>
+        <div class="topbar__actions">
+          <a href="#booking" class="topbar__bell" aria-label="Pending bookings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+            <span class="nav-badge nav-badge--dot" data-badge="pending" hidden></span>
+          </a>
+          <div class="topbar__user">
+            <span class="avatar" id="userAvatar">A</span>
+            <span class="topbar__user-text"><strong id="userName">Admin</strong><small id="userEmail"></small></span>
+          </div>
+        </div>
+      </header>
+
+      <main class="view-host" id="viewHost">
+        <section class="view" data-view="main" hidden></section>
+        <section class="view" data-view="analysis" hidden></section>
+        <section class="view" data-view="house" hidden></section>
+        <section class="view" data-view="booking" hidden></section>
+        <section class="view" data-view="setting" hidden></section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Bottom navigation (phones) -->
+  <nav class="bottom-nav" aria-label="Admin">
+    <span class="bottom-nav__pill" aria-hidden="true"></span>
+    <a href="#main" data-view="main">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg>
+      <span>Main</span>
+    </a>
+    <a href="#analysis" data-view="analysis">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg>
+      <span>Analysis</span>
+    </a>
+    <a href="#house" data-view="house">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+      <span>House</span>
+    </a>
+    <a href="#booking" data-view="booking">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="17" rx="2"/><path d="M8 2v4M16 2v4M4 10h16"/><path d="m9 15 2 2 4-4"/></svg>
+      <span>Booking</span>
+      <span class="nav-badge nav-badge--dot" data-badge="pending" hidden></span>
+    </a>
+    <a href="#setting" data-view="setting">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+      <span>Setting</span>
+    </a>
+  </nav>
+
+  <!-- Shared detail drawer (booking detail, house editor) -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="drawer" id="drawer" aria-modal="true" role="dialog" aria-labelledby="drawerTitle">
+    <div class="drawer__head">
+      <h2 class="h3" id="drawerTitle"></h2>
+      <button class="close-x" data-drawer-close aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="drawer__body" id="drawerBody"></div>
+    <div class="drawer__foot" id="drawerFoot"></div>
+  </aside>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/seed.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="../js/admin/core.js"></script>
+  <script src="../js/charts.js"></script>
+  <script src="../js/admin/view-main.js"></script>
+  <script src="../js/admin/view-analysis.js"></script>
+  <script src="../js/admin/view-house.js"></script>
+  <script src="../js/admin/view-booking.js"></script>
+  <script src="../js/admin/view-setting.js"></script>
+</body>
+</html>
