@@ -95,7 +95,6 @@ js/                     ui.js (helpers), seed.js (demo data), store.js (data + b
 js/admin/               core.js (router, sidebar, drawer) + view-main / view-analysis /
                         view-house / view-booking / view-setting
 assets/img/             Hero photos, house photos (assets/img/houses), logo and favicon
-tools/                  Developer script for rendering photos - not needed to run the site
 docs/screenshots/       Images used in this README
 ```
 
@@ -104,5 +103,5 @@ docs/screenshots/       Images used in this README
 - HTML5, CSS3 (custom properties, grid, backdrop-filter), vanilla JavaScript (ES2020)
 - Chart.js 4.4.1 (CDN) for the Analysis charts
 - Google Fonts: Plus Jakarta Sans
-- Photos generated with OpenAI gpt-image-2 (`tools/render-images.ps1`)
+- Photos generated with OpenAI gpt-image-2
 - GitHub Pages deployment through `.github/workflows/static.yml`

@@ -5,5 +5,5 @@
 *.txt
 # Project Resources (Alice working reference - never commit)
 Project Resources
-# generated PNG masters from gpt-image-2 (jpg copies ship in assets/img)
-tools/out/
+# Developer tools (photo render script + PNG masters) - kept local, not shipped
+tools/
