@@ -1,0 +1,440 @@
+/* ==========================================================================
+   Happy Home - admin/view-booking.css
+   Booking view: toolbar, status chips, table cells, phone cards and the
+   booking detail drawer (house mini card, customer, receipt preview).
+   Scoped to .view[data-view="booking"] and #drawer .booking-detail.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- Toolbar */
+.view[data-view="booking"] .bk-toolbar {
+  margin-bottom: 14px;
+}
+
+.view[data-view="booking"] .bk-toolbar__select {
+  flex: 0 1 210px;
+  min-width: 0;
+}
+
+.view[data-view="booking"] .bk-chips {
+  margin-bottom: 20px;
+}
+
+.view[data-view="booking"] .bk-chips .chip {
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------------------ Table */
+.view[data-view="booking"] .bk-panel {
+  overflow: hidden;
+}
+
+.view[data-view="booking"] .bk-table td {
+  white-space: nowrap;
+}
+
+.view[data-view="booking"] .bk-table tbody tr:focus-visible {
+  outline: 2px solid var(--coral-500);
+  outline-offset: -2px;
+}
+
+.view[data-view="booking"] .bk-ref {
+  font-weight: 800;
+  font-size: 0.84rem;
+  color: var(--navy-700);
+  letter-spacing: 0.02em;
+}
+
+.view[data-view="booking"] .bk-cust {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.view[data-view="booking"] .bk-cust__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.view[data-view="booking"] .bk-cust__text strong {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.9rem;
+}
+
+.view[data-view="booking"] .bk-cust__text small,
+.view[data-view="booking"] .bk-created {
+  font-size: 0.78rem;
+  color: var(--ink-mute);
+}
+
+.view[data-view="booking"] .bk-house {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+}
+
+.view[data-view="booking"] .bk-period {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+}
+
+.view[data-view="booking"] .bk-table .num {
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------ Phone cards */
+.view[data-view="booking"] .bk-cards {
+  display: grid;
+  gap: 12px;
+}
+
+.view[data-view="booking"] .bk-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  color: var(--ink);
+  min-width: 0;
+}
+
+.view[data-view="booking"] .bk-card:hover,
+.view[data-view="booking"] .bk-card:focus-visible {
+  border-color: var(--coral-400);
+  box-shadow: var(--shadow-md);
+}
+
+.view[data-view="booking"] .bk-card__top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.view[data-view="booking"] .bk-card__who {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.view[data-view="booking"] .bk-card__who strong,
+.view[data-view="booking"] .bk-card__who small {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.view[data-view="booking"] .bk-card__who small {
+  font-size: 0.78rem;
+  color: var(--ink-mute);
+}
+
+.view[data-view="booking"] .bk-card__house,
+.view[data-view="booking"] .bk-card__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.view[data-view="booking"] .bk-card__house {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.view[data-view="booking"] .bk-card svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  color: var(--coral-500);
+}
+
+.view[data-view="booking"] .bk-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+}
+
+.view[data-view="booking"] .bk-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
+
+.view[data-view="booking"] .bk-card__foot strong {
+  color: var(--coral-600);
+  font-weight: 800;
+}
+
+/* ================================================================ Drawer */
+#drawer .booking-detail .bk-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+#drawer .booking-detail .bk-status small {
+  font-size: 0.78rem;
+}
+
+#drawer .booking-detail .bk-stepper {
+  padding: 16px 8px 14px;
+  border-radius: var(--r-lg);
+  background: var(--cream-50);
+  border: 1px solid var(--line);
+}
+
+#drawer .booking-detail .bk-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  font-size: 0.84rem;
+  color: var(--coral-600);
+}
+
+#drawer .booking-detail .bk-link:hover {
+  text-decoration: underline;
+}
+
+#drawer .booking-detail .bk-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* House mini card */
+#drawer .booking-detail .bk-house-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+#drawer .booking-detail .bk-house-card__thumb {
+  position: relative;
+  width: 92px;
+  height: 72px;
+  flex: none;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background: var(--cream-100);
+}
+
+#drawer .booking-detail .bk-house-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#drawer .booking-detail .bk-house-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+#drawer .booking-detail .bk-house-card__text strong {
+  font-size: 0.98rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#drawer .booking-detail .bk-house-card__text small {
+  font-size: 0.82rem;
+}
+
+/* Customer */
+#drawer .booking-detail .bk-customer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+#drawer .booking-detail .bk-customer__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+#drawer .booking-detail .bk-customer__text strong {
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+#drawer .booking-detail .bk-customer__text small {
+  font-size: 0.8rem;
+}
+
+#drawer .booking-detail .bk-phone {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+}
+
+#drawer .booking-detail .bk-wa {
+  gap: 6px;
+}
+
+#drawer .booking-detail .bk-wa svg {
+  width: 16px;
+  height: 16px;
+}
+
+#drawer .booking-detail .bk-kv dd a {
+  word-break: break-all;
+}
+
+/* Receipt */
+#drawer .booking-detail .bk-receipt {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: var(--cream-100);
+  cursor: zoom-in;
+}
+
+#drawer .booking-detail .bk-receipt img {
+  display: block;
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  object-position: top;
+  transition: transform var(--t-med) var(--ease);
+}
+
+#drawer .booking-detail .bk-receipt:hover img {
+  transform: scale(1.03);
+}
+
+#drawer .booking-detail .bk-receipt__zoom {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  background: rgba(11, 21, 48, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--white);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+#drawer .booking-detail .bk-receipt__zoom svg {
+  width: 14px;
+  height: 14px;
+}
+
+#drawer .booking-detail .bk-receipt-none {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: var(--r-md);
+  border: 1.5px dashed var(--line);
+  background: var(--cream-50);
+}
+
+#drawer .booking-detail .bk-receipt-none svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+#drawer .booking-detail .textarea[readonly] {
+  background: var(--cream-50);
+  color: var(--ink-soft);
+}
+
+#drawer .booking-detail .timeline {
+  margin: 0;
+  list-style: none;
+}
+
+/* Drawer footer buttons carry icons */
+#drawer .drawer__foot [data-act] svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ------------------------------------------------------------- Responsive */
+@media (max-width: 767px) {
+  .view[data-view="booking"] .bk-toolbar {
+    gap: 10px;
+  }
+
+  .view[data-view="booking"] .bk-toolbar .toolbar__grow {
+    flex-basis: 100%;
+  }
+
+  .view[data-view="booking"] .bk-toolbar__select {
+    flex: 1 1 calc(50% - 5px);
+  }
+
+  .view[data-view="booking"] .bk-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 0 16px 4px;
+    scrollbar-width: none;
+  }
+
+  .view[data-view="booking"] .bk-chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .view[data-view="booking"] .bk-chips .chip {
+    flex: none;
+  }
+
+  #drawer .booking-detail .bk-house-card__thumb {
+    width: 76px;
+    height: 60px;
+  }
+
+  #drawer .booking-detail .bk-stepper {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #drawer .booking-detail .bk-receipt {
+    max-width: none;
+  }
+
+  #drawer .drawer__foot .btn[data-drawer-close] {
+    flex: 0 0 auto;
+  }
+}
